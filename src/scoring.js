@@ -55,7 +55,7 @@ const displayPerson = ({ name, age })=> (name+' is '+age+' years old');
 displayPerson(person);
 
 export const isSmallStraight = (dice)=> {
-  const uniqueSortedDice = Array.from( new Set(dice.sort()) );
+  const uniqueSortedDice = Array.from( new Set([...dice].sort()) );
   let combo = 0;
 
   for(let i = 0; i < (uniqueSortedDice.length - 1); i++){
@@ -68,7 +68,7 @@ export const isSmallStraight = (dice)=> {
 };
 
 export const isLargeStraight = (dice)=> {
-  const sortedDice = dice.sort();
+  const sortedDice = [...dice].sort();
 
   for(let i = 0; i < (sortedDice.length - 1); i++){
     if( sortedDice[i] !== sortedDice[i+1] -1 ) return false;
@@ -77,10 +77,10 @@ export const isLargeStraight = (dice)=> {
 };
 
 
-export const rollDice = ()=> {
+export const rollDice = (N = 5)=> {
   const dice = [];
 
-  for(let i=0; i<5; i++){
+  for(let i=0; i<N; i++){
     dice.push( Math.ceil( Math.random() * 6 ) );
   }
 
